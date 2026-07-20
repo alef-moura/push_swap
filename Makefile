@@ -2,13 +2,16 @@ NAME = push_swap
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+AR = ar
+ARFLAGS = rcs
 RM = rm -rf
 
 SRCS = main.c 
 
-OBJS = 
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
+
 
 clean:
 
