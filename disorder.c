@@ -1,52 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/25 18:19:52 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/25 18:23:13 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	run_strategy(t_ps *ps)
+void	to_ranks(t_ps *ps)
 {
-	ps->used = ps->strat;
-	if (ps->strat == ADAPTIVE)
+	int	*r;
+	int	i;
+	int	j;
+
+	r = malloc(sizeof(int) * ps->a.size);
+	if (!r)
+		error_exit(ps);
+	i = -1;
+	while (++i < ps->a.size)
 	{
-		if (ps->disorder < 2000)
-			ps->used = SIMPLE;
-		else if (ps->disorder < 5000)
-			ps->used = MEDIUM;
-		else
-			ps->used = COMPLEX;
+		r[i] = 0;
+		j = -1;
+		while (++j < ps->a.size)
+			if (ps->a.v[j] < ps->a.v[i])
+				r[i]++;
 	}
-	if (ps->used == SIMPLE)
-		sort_simple(ps);
-	else if (ps->used == MEDIUM)
-		sort_medium(ps);
-	else
-		sort_complex(ps);
+	i = -1;
+	while (++i < ps->a.size)
+		ps->a.v[i] = r[i];
+	free(r);
 }
 
-int	main(int argc, char **argv)
+int	disorder_bp(t_stack *a)
 {
-	t_ps	ps;
+	long	mistakes;
+	long	pairs;
 	int		i;
+	int		j;
 
-	init_ps(&ps);
-	i = parse_flags(&ps, argc, argv);
-	if (i >= argc)
+	pairs = (long)a->size * (a->size - 1) / 2;
+	if (pairs == 0)
 		return (0);
-	parse_numbers(&ps, argc - i, argv + i);
-	ps.disorder = disorder_bp(&ps.a);
-	to_ranks(&ps);
-	run_strategy(&ps);
-	if (ps.bench)
-		print_bench(&ps);
-	free_ps(&ps);
-	return (0);
+	mistakes = 0;
+	i = -1;
+	while (++i < a->size)
+	{
+		j = i;
+		while (++j < a->size)
+			if (a->v[i] > a->v[j])
+				mistakes++;
+	}
+	return ((int)((mistakes * 10000 + pairs / 2) / pairs));
 }
