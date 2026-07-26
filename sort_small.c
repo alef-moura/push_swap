@@ -1,63 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_medium.c                                      :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/26 12:00:30 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/26 12:01:25 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	max_pos(t_stack *b)
+static void	sort_three(t_ps *ps)
 {
-	int	i;
-	int	pos;
+	int	x;
+	int	y;
+	int	z;
 
-	pos = 0;
-	i = 1;
-	while (i < b->size)
+	x = st_get(&ps->a, 0);
+	y = st_get(&ps->a, 1);
+	z = st_get(&ps->a, 2);
+	if (x > y && y < z && x < z)
+		do_op(ps, SA);
+	else if (x > y && y > z)
 	{
-		if (st_get(b, i) > st_get(b, pos))
-			pos = i;
-		i++;
+		do_op(ps, SA);
+		do_op(ps, RRA);
 	}
-	return (pos);
+	else if (x > y && x > z)
+		do_op(ps, RA);
+	else if (x < y && y > z && x < z)
+	{
+		do_op(ps, RRA);
+		do_op(ps, SA);
+	}
+	else if (x < y && y > z)
+		do_op(ps, RRA);
 }
 
-static void	push_chunks(t_ps *ps, int chunk)
+void	sort_small(t_ps *ps)
 {
-	int	lim;
-
-	while (ps->a.size > 0)
-	{
-		lim = ps->b.size;
-		if (st_get(&ps->a, 0) < lim + chunk / 2)
-		{
-			do_op(ps, PB);
-			do_op(ps, RB);
-		}
-		else if (st_get(&ps->a, 0) < lim + chunk)
-			do_op(ps, PB);
-		else
-			do_op(ps, RA);
-	}
-}
-
-void	sort_medium(t_ps *ps)
-{
-	int	chunk;
-
 	if (is_sorted(&ps->a))
 		return ;
-	chunk = ft_isqrt(3 * ps->a.size / 2) + 2;
-	push_chunks(ps, chunk);
-	while (ps->b.size > 0)
+	if (ps->a.size == 2)
 	{
-		rot_to_top(ps, &ps->b, max_pos(&ps->b), 1);
-		do_op(ps, PA);
+		do_op(ps, SA);
+		return ;
 	}
+	while (ps->a.size > 3)
+	{
+		rot_to_top(ps, &ps->a, min_pos(&ps->a), 0);
+		do_op(ps, PB);
+	}
+	if (!is_sorted(&ps->a))
+		sort_three(ps);
+	while (ps->b.size > 0)
+		do_op(ps, PA);
 }

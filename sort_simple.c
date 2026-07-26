@@ -6,27 +6,11 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/25 18:24:20 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/26 12:00:36 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	min_pos(t_stack *a)
-{
-	int	i;
-	int	pos;
-
-	pos = 0;
-	i = 1;
-	while (i < a->size)
-	{
-		if (st_get(a, i) < st_get(a, pos))
-			pos = i;
-		i++;
-	}
-	return (pos);
-}
 
 void	sort_simple(t_ps *ps)
 {

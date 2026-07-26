@@ -6,7 +6,7 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/25 18:19:52 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/26 11:59:52 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static void	run_strategy(t_ps *ps)
 			ps->used = MEDIUM;
 		else
 			ps->used = COMPLEX;
+		if (ps->a.size <= 5)
+		{
+			ps->used = SIMPLE;
+			sort_small(ps);
+			return ;
+		}
 	}
 	if (ps->used == SIMPLE)
 		sort_simple(ps);
