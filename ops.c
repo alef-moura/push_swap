@@ -6,7 +6,7 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/26 12:00:00 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/27 16:03:49 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	op_swap(t_stack *s)
 {
 	int	tmp;
 
-	if (s->size < 2)
+	if (s->size < 2)//verifica se ha pelo menos dois numeros na pilha
 		return ;
 	tmp = s->v[s->top];
 	s->v[s->top] = s->v[(s->top + 1) % s->cap];

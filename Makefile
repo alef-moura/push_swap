@@ -1,68 +1,50 @@
-# Executáveis
-NAME        = push_swap
-BONUS_NAME  = checker
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/07/27 13:02:00 by alesferr          #+#    #+#              #
+#    Updated: 2026/07/27 13:10:35 by alesferr         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# Compilador e Flags
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -I.
+NAME		= push_swap
+BONUS_NAME	= checker
 
-# Fontes Comuns (utilizados tanto pelo push_swap quanto pelo checker)
-COMMON_SRCS = src/stack_utils.c \
-              src/parse.c \
-              src/disorder.c \
-              src/ranks.c \
-              src/ops_swap.c \
-              src/ops_push.c \
-              src/ops_rotate.c \
-              src/ops_rev_rotate.c
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
 
-# Fontes do push_swap principal
-MAIN_SRCS   = src/main.c \
-              src/strategy_simple.c \
-              src/strategy_medium.c \
-              src/strategy_complex.c \
-              src/strategy_adaptive.c \
-              src/bench.c
+SRCS		= main.c ops.c parse.c parse_nums.c disorder.c \
+			  stack.c utils.c utils2.c bench.c \
+			  sort_complex.c sort_medium.c sort_simple.c sort_small.c
 
-# Fontes do bônus (checker)
-BONUS_SRCS  = bonus/checker_main.c \
-              bonus/checker_utils.c
+BONUS_SRCS	= checker_bonus.c ops.c parse.c parse_nums.c disorder.c \
+			  stack.c utils.c utils2.c bench.c \
+			  sort_complex.c sort_medium.c sort_simple.c sort_small.c
 
-# Objetos
-COMMON_OBJS = $(COMMON_SRCS:.c=.o)
-MAIN_OBJS   = $(MAIN_SRCS:.c=.o)
-BONUS_OBJS  = $(BONUS_SRCS:.c=.o)
 
-# Cores para o terminal
-GREEN       = \033[0;32m
-YELLOW      = \033[0;33m
-RESET       = \033[0m
+OBJS		= $(SRCS:.c=.o)
+BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 
-# Regra Principal
+
 all: $(NAME)
 
-$(NAME): $(COMMON_OBJS) $(MAIN_OBJS)
-	@$(CC) $(CFLAGS) $(COMMON_OBJS) $(MAIN_OBJS) -o $(NAME)
-	@echo "$(GREEN)✓ $(NAME) compilado com sucesso!$(RESET)"
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-# Regra Bônus
 bonus: $(BONUS_NAME)
 
-$(BONUS_NAME): $(COMMON_OBJS) $(BONUS_OBJS)
-	@$(CC) $(CFLAGS) $(COMMON_OBJS) $(BONUS_OBJS) -o $(BONUS_NAME)
-	@echo "$(GREEN)✓ $(BONUS_NAME) (bônus) compilado com sucesso!$(RESET)"
-
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+$(BONUS_NAME): $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
 clean:
-	@rm -f $(COMMON_OBJS) $(MAIN_OBJS) $(BONUS_OBJS)
-	@echo "$(YELLOW)✓ Objetos (.o) removidos.$(RESET)"
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	@rm -f $(NAME) $(BONUS_NAME)
-	@echo "$(YELLOW)✓ Executáveis removidos.$(RESET)"
+	rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all bonus clean fclean re
