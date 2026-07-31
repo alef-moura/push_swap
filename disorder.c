@@ -6,22 +6,7 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/26 11:59:44 by alesferr         ###   ########.fr       */static int	apply_flag(t_ps *ps, const char *s)
-{
-	if (ft_streq(s, "--bench"))
-		ps->bench = 1;
-	else if (ft_streq(s, "--simple"))
-		ps->strat = SIMPLE;
-	else if (ft_streq(s, "--medium"))
-		ps->strat = MEDIUM;
-	else if (ft_streq(s, "--complex"))
-		ps->strat = COMPLEX;
-	else if (ft_streq(s, "--adaptive"))
-		ps->strat = ADAPTIVE;
-	else
-		return (0);
-	return (1);
-}
+/*   Updated: 2026/07/31 20:27:15 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
