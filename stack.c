@@ -6,12 +6,12 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/31 20:28:08 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 12:45:38 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+//gerencia a memoria das duas pilhas
 void	init_ps(t_ps *ps)
 {
 	int	i;

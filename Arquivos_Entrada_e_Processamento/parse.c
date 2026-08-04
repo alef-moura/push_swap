@@ -6,17 +6,27 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/31 20:27:33 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 13:42:46 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_exit(t_ps *ps)
+static int	apply_flag(t_ps *ps, const char *s);
+void	error_exit(t_ps *ps);
+
+int	parse_flags(t_ps *ps, int argc, char **argv)
 {
-	free_ps(ps);
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
+	int	i;
+
+	i = 1;
+	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
+	{
+		if (apply_flag(ps, argv[i]) == 0)
+			error_exit(ps);
+		i++;
+	}
+	return (i);
 }
 
 static int	apply_flag(t_ps *ps, const char *s)
@@ -36,16 +46,9 @@ static int	apply_flag(t_ps *ps, const char *s)
 	return (1);
 }
 
-int	parse_flags(t_ps *ps, int argc, char **argv)
+void	error_exit(t_ps *ps)
 {
-	int	i;
-
-	i = 1;
-	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
-	{
-		if (!apply_flag(ps, argv[i]))
-			error_exit(ps);
-		i++;
-	}
-	return (i);
+	free_ps(ps);
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }

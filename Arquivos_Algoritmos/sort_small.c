@@ -6,11 +6,33 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/31 20:28:01 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 13:42:28 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	sort_three(t_ps *ps);
+
+void	sort_small(t_ps *ps)
+{
+	if (is_sorted(&ps->a) == 1)
+		return ;
+	if (ps->a.size == 2)
+	{
+		do_op(ps, SA);
+		return ;
+	}
+	while (ps->a.size > 3)
+	{
+		rot_to_top(ps, &ps->a, min_pos(&ps->a), 0);
+		do_op(ps, PB);
+	}
+	if (is_sorted(&ps->a) == 0)
+		sort_three(ps);
+	while (ps->b.size > 0)
+		do_op(ps, PA);
+}
 
 static void	sort_three(t_ps *ps)
 {
@@ -37,24 +59,4 @@ static void	sort_three(t_ps *ps)
 	}
 	else if (x < y && y > z)
 		do_op(ps, RRA);
-}
-
-void	sort_small(t_ps *ps)
-{
-	if (is_sorted(&ps->a))
-		return ;
-	if (ps->a.size == 2)
-	{
-		do_op(ps, SA);
-		return ;
-	}
-	while (ps->a.size > 3)
-	{
-		rot_to_top(ps, &ps->a, min_pos(&ps->a), 0);
-		do_op(ps, PB);
-	}
-	if (!is_sorted(&ps->a))
-		sort_three(ps);
-	while (ps->b.size > 0)
-		do_op(ps, PA);
 }

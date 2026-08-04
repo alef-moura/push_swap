@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ranks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/31 20:27:15 by alesferr         ###   ########.fr       */
+/*   Created: 2026/08/04 13:00:45 by alesferr          #+#    #+#             */
+/*   Updated: 2026/08/04 13:13:09 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	to_ranks(t_ps *ps)
 	int	j;
 
 	r = malloc(sizeof(int) * ps->a.size);
-	if (!r)
+	if (r == NULL)
 		error_exit(ps);
 	i = -1;
 	while (++i < ps->a.size)
@@ -34,26 +34,4 @@ void	to_ranks(t_ps *ps)
 	while (++i < ps->a.size)
 		ps->a.v[i] = r[i];
 	free(r);
-}
-
-int	disorder_bp(t_stack *a)
-{
-	long	mistakes;
-	long	pairs;
-	int		i;
-	int		j;
-
-	pairs = (long)a->size * (a->size - 1) / 2;
-	if (pairs == 0)
-		return (0);
-	mistakes = 0;
-	i = -1;
-	while (++i < a->size)
-	{
-		j = i;
-		while (++j < a->size)
-			if (a->v[i] > a->v[j])
-				mistakes++;
-	}
-	return ((int)((mistakes * 10000 + pairs / 2) / pairs));
 }

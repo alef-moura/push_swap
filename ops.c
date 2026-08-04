@@ -6,19 +6,19 @@
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/31 20:27:26 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 13:32:43 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+//onde os movimentos acontecem
 static void	op_swap(t_stack *s)
 {
 	int	tmp;
 
-	if (s->size < 2)//verifica se ha pelo menos dois numeros na pilha
+	if (s->size < 2)
 		return ;
-	tmp = s->v[s->top];//salva o valor que esta no topo atual na variavel temp
+	tmp = s->v[s->top];
 	s->v[s->top] = s->v[(s->top + 1) % s->cap];
 	s->v[(s->top + 1) % s->cap] = tmp;
 }

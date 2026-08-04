@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/07/31 20:27:56 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 13:42:38 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_simple(t_ps *ps)
+int	disorder_bp(t_stack *a)
 {
-	while (!is_sorted(&ps->a))
+	long	mistakes;
+	long	pairs;
+	int		i;
+	int		j;
+
+	pairs = (long)a->size * (a->size - 1) / 2;
+	if (pairs == 0)
+		return (0);
+	mistakes = 0;
+	i = -1;
+	while (++i < a->size)
 	{
-		rot_to_top(ps, &ps->a, min_pos(&ps->a), 0);
-		do_op(ps, PB);
+		j = i;
+		while (++j < a->size)
+			if (a->v[i] > a->v[j])
+				mistakes++;
 	}
-	while (ps->b.size > 0)
-		do_op(ps, PA);
+	return ((int)((mistakes * 10000 + pairs / 2) / pairs));
 }
