@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by alesferr and ahideo-k.*
+*This project has been created as part of the 42 curriculum by alesferr, ahideo-k.*
 
 # Push_swap
 
@@ -6,7 +6,7 @@ An optimized, modular, and robust implementation of the **Push_swap** project fr
 
 ---
 
-## 👥 Authors and Contributions
+## Authors and Contributions
 
 This project was developed in pairs as required by the 42 curriculum:
 
@@ -15,7 +15,7 @@ This project was developed in pairs as required by the 42 curriculum:
 
 ---
 
-## 📋 Project Overview
+## Description
 
 The objective of **Push_swap** is to sort a given set of integer values on Stack **A** in ascending order, using an auxiliary Stack **B** and a restricted set of stack manipulation operations, producing the **shortest sequence of instructions possible**.
 
