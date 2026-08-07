@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ahideo-k <ahideo-k@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 13:42:46 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 13:07:30 by ahideo-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	apply_flag(t_ps *ps, const char *s);
-void	error_exit(t_ps *ps);
+static	int	apply_flag(t_ps *ps, const char *s);
+void		error_exit(t_ps *ps);
 
 int	parse_flags(t_ps *ps, int argc, char **argv)
 {

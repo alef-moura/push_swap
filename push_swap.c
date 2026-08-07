@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 13:43:11 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/07 11:51:27 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static void	run_strategy(t_ps *ps);
-//decide qual algoritmo usar
 
 int	main(int argc, char **argv)
 {
@@ -28,7 +27,7 @@ int	main(int argc, char **argv)
 	ps.disorder = disorder_bp(&ps.a);
 	to_ranks(&ps);
 	run_strategy(&ps);
-	if (ps.bench)
+	if (ps.bench == 1)
 		print_bench(&ps);
 	free_ps(&ps);
 	return (0);

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ops.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ahideo-k <ahideo-k@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 14:46:57 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/31 15:45:48 by ahideo-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//onde os movimentos acontecem
+
 static void	op_swap(t_stack *s)
 {
 	int	tmp;

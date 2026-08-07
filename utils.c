@@ -1,35 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 13:42:38 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/26 12:00:54 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	disorder_bp(t_stack *a)
+size_t	ft_strlen(const char *s)
 {
-	long	mistakes;
-	long	pairs;
-	int		i;
-	int		j;
+	size_t	i;
 
-	pairs = (long)a->size * (a->size - 1) / 2;
-	if (pairs == 0)
-		return (0);
-	mistakes = 0;
-	i = -1;
-	while (++i < a->size)
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	ft_streq(const char *a, const char *b)
+{
+	int	i;
+
+	i = 0;
+	while (a[i] && a[i] == b[i])
+		i++;
+	return (a[i] == b[i]);
+}
+
+void	ft_putstr_fd(const char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
+}
+
+void	ft_putnbr_fd(long n, int fd)
+{
+	char	c;
+
+	if (n < 0)
 	{
-		j = i;
-		while (++j < a->size)
-			if (a->v[i] > a->v[j])
-				mistakes++;
+		write(fd, "-", 1);
+		n = -n;
 	}
-	return ((int)((mistakes * 10000 + pairs / 2) / pairs));
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	c = '0' + (n % 10);
+	write(fd, &c, 1);
+}
+
+int	ft_isqrt(int n)
+{
+	int	r;
+
+	r = 1;
+	while (r * r <= n)
+		r++;
+	return (r - 1);
 }

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ahideo-k <ahideo-k@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 13:42:55 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 13:04:23 by ahideo-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	put_pct(t_ps *ps);
+static void			put_pct(t_ps *ps);
 static const char	*strat_name(t_ps *ps);
 static const char	*class_name(t_strat used);
-static void	put_ops_line(t_ps *ps, int from, int to);
+static void			put_ops_line(t_ps *ps, int from, int to);
 
 void	print_bench(t_ps *ps)
 {
@@ -67,7 +67,6 @@ static const char	*class_name(t_strat used)
 		return ("O(n*sqrt(n))");
 	return ("O(n log n)");
 }
-
 
 static void	put_ops_line(t_ps *ps, int from, int to)
 {

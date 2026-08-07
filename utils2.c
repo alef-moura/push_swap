@@ -1,63 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 13:42:59 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/07/26 12:01:19 by alesferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//texto e saida
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+const char	*op_name(int op)
+{
+	static const char	*names[11] = {"sa\n", "sb\n", "ss\n", "pa\n",
+		"pb\n", "ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
+
+	return (names[op]);
 }
 
-int	ft_streq(const char *a, const char *b)
+int	min_pos(t_stack *a)
 {
 	int	i;
+	int	pos;
 
-	i = 0;
-	while (a[i] && a[i] == b[i])
-		i++;
-	return (a[i] == b[i]);
-}
-
-void	ft_putstr_fd(const char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
-}
-
-void	ft_putnbr_fd(long n, int fd)
-{
-	char	c;
-
-	if (n < 0)
+	pos = 0;
+	i = 1;
+	while (i < a->size)
 	{
-		write(fd, "-", 1);
-		n = -n;
+		if (st_get(a, i) < st_get(a, pos))
+			pos = i;
+		i++;
 	}
-	if (n >= 10)
-		ft_putnbr_fd(n / 10, fd);
-	c = '0' + (n % 10);
-	write(fd, &c, 1);
+	return (pos);
 }
 
-int	ft_isqrt(int n)
+void	rot_to_top(t_ps *ps, t_stack *s, int pos, int is_b)
 {
-	int	r;
+	t_op	up;
+	t_op	down;
 
-	r = 1;
-	while (r * r <= n)
-		r++;
-	return (r - 1);
+	up = RA;
+	down = RRA;
+	if (is_b)
+	{
+		up = RB;
+		down = RRB;
+	}
+	if (pos <= s->size / 2)
+	{
+		while (pos-- > 0)
+			do_op(ps, up);
+	}
+	else
+	{
+		pos = s->size - pos;
+		while (pos-- > 0)
+			do_op(ps, down);
+	}
 }

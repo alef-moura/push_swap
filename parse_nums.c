@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_nums.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ahideo-k <ahideo-k@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 13:42:42 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 13:09:30 by ahideo-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	count_tokens(const char *s)
 			i++;
 		if (s[i] != '\0')
 			count++;
-		while (s[i] && s[i] != ' ')
+		while (s[i] != '\0' && s[i] != ' ')
 			i++;
 	}
 	return (count);

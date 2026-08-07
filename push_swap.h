@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesferr <alesferr@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: ahideo-k <ahideo-k@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 18:44:49 by alesferr          #+#    #+#             */
-/*   Updated: 2026/08/04 16:49:57 by alesferr         ###   ########.fr       */
+/*   Updated: 2026/08/04 16:49:22 by ahideo-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void		parse_numbers(t_ps *ps, int n, char **av);
 /* disorder.c */
 int			disorder_bp(t_stack *a);
 
-/* ranks.c */
+/*ranks.c*/
 void		to_ranks(t_ps *ps);
 
 /* sort_simple.c, sort_medium.c, sort_complex.c, sort_small.c */
